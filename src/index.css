@@ -264,7 +264,7 @@ button {
 }
 
 .socialLogin {
-  margin-top: 4rem;
+  /* margin-top: 4rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -275,8 +275,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.75rem;
-  margin: 1.5rem;
+  /* padding: 0.75rem;
+  margin: 1.5rem; */
+  margin: 5px;
   width: 3rem;
   height: 3rem;
   background-color: #ffffff;
@@ -285,11 +286,13 @@ button {
 }
 
 .socialIconImg {
-  width: 100%;
+  width: 75%;
+  margin: 0;
 }
 
 .registerLink {
-  margin-top: 0rem;
+  /* mar;gin-top: 0rem; */
+  /* margin-bottom: 300px; */
   color: #00cc66;
   font-weight: 600;
   text-align: center;
