@@ -70,6 +70,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4rem;
 }
 
 .removeIcon {
@@ -795,7 +796,7 @@ button {
 .formInputFile {
   width: 100%;
 }
-.formInputFile::-webkit-file-upload-button {
+.formInputFile::file-selector-button {
   background-color: #00cc66;
   border: none;
   color: #ffffff;
