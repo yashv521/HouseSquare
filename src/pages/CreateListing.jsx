@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 function CreateListing() {
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
@@ -59,43 +59,63 @@ function CreateListing() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMounted]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async(e) => {
     e.preventDefault();
 
-    setLoading(true)
+    setLoading(true);
 
-    if(discountedPrice >= regularPrice) {
-      setLoading(false)
-      toast.error('Discounted price needs to ne less than regular price')
-      return
+     if (discountedPrice >= regularPrice) {
+       setLoading(false);
+       toast.error("Discounted price can't be more than regular price");
+       return;
+     }
+
+    if (images.length > 6) {
+      setLoading(false);
+      toast.error("Max 6 images");
+      return;
     }
+      let geolocation = {}
+      let location
+
+      if(geolocationEnabled){
+         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=Yourkey`)
+
+         const data = await response.json()
+         console.log(data)
+
+      }else {
+        geolocation.lat= latitude
+        geolocation.lng= longitude
+        location = address
+      }
+      setLoading(false)
   };
 
   const onMutate = (e) => {
-    let boolean = null
+    let boolean = null;
 
-    if(e.target.vlue === 'true') {
-      boolean = true
+    if (e.target.value === "true") {
+      boolean = true;
     }
-    if(e.target.vlue === 'false') {
-      boolean = false
+    if (e.target.value === "false") {
+      boolean = false;
     }
 
     //Files
-    if(e.target.files) {
-      setFormData((prevState) =>({
+    if (e.target.files) {
+      setFormData((prevState) => ({
         ...prevState,
-        images: e.target.files
-      }))
+        images: e.target.files,
+      }));
     }
     //Texts/Booleans/Numbers
-    if(!e.target.files) {
+    if (!e.target.files) {
       setFormData((prevState) => ({
         ...prevState,
         [e.target.id]: boolean ?? e.target.value,
-      }))
+      }));
     }
-
   };
   if (loading) {
     return <Spinner />;
@@ -306,7 +326,7 @@ function CreateListing() {
               <input
                 className="formInputSmall"
                 type="number"
-                id="discounted price"
+                id="discountedPrice"
                 value={discountedPrice}
                 onChange={onMutate}
                 min="50"
@@ -330,7 +350,7 @@ function CreateListing() {
             multiple
             required
           />
-          <button type='submit' className="primaryButton">
+          <button type="submit" className="primaryButton">
             Create Listing
           </button>
         </form>
