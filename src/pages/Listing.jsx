@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import "swiper/css";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
 
 function Listing() {
   const [listing, setListing] = useState(null);
@@ -22,7 +26,7 @@ function Listing() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        console.log(docSnap.data());
+       
         setListing(docSnap.data());
         setLoading(false);
       }
@@ -37,7 +41,37 @@ function Listing() {
 
   return (
     <main>
-      {/*Slider*/}
+      
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        navigation
+      >
+        {listings.map(({ data, id }) => {
+          return (
+            <SwiperSlide
+              key={id}
+              onClick={() => navigate(`/category/${data.type}/${id}`)}
+            >
+              <div
+                style={{
+                  background: `url(${data.imgUrls[0]}) center no-repeat`,
+                  backgroundSize: 'cover',
+                  padding: '150px',
+                }}
+                className="swipeSlideDiv"
+              >
+                <p className="swiperSlideText">{data.name}</p>
+                <p className="swiperSlidePrice">
+                  ${data.discountedPrice ?? data.regularPrice}{' '}
+                  {data.type === 'rent' && '/month'}
+                </p>
+              </div>
+            </SwiperSlide>
+          )
+        })}
+      </Swiper>
 
       <div
         className="shareIconDiv"
