@@ -17,6 +17,7 @@ import ListingItem from '../components/ListingItem';
 function Offers() {
   const [listings, setListings] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastFetchedListing, setLastFetchedListing] = useState(null);
 
   const params = useParams();
 
@@ -31,11 +32,14 @@ function Offers() {
           listingRef,
           where("offer", "==", true),
           orderBy("timestamp", "desc"),
-          limit(10)
+          limit(8)
         );
 
         //execute the query
         const querySnap = await getDocs(q);
+
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+        setLastFetchedListing(lastVisible);
 
         const listings = [];
         querySnap.forEach((doc) => {
@@ -55,6 +59,44 @@ function Offers() {
 
     fetchListings();
   }, []);
+
+
+  //pagination//load more
+  const onFetchMoreListings = async () => {
+    try {
+      //Get Reference
+      const listingRef = collection(db, "listings");
+
+      //Create a query
+      const q = query(
+        listingRef,
+        where("offer", "==", true),
+        orderBy("timestamp", "desc"),
+        startAfter(lastFetchedListing),
+        limit(8)
+      );
+
+      //execute the query
+      const querySnap = await getDocs(q);
+
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+      setLastFetchedListing(lastVisible);
+
+      const listings = [];
+      querySnap.forEach((doc) => {
+        return listings.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setListings((prevState) =>[...prevState, ...listings]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      toast.error("Could not fetch listings");
+    }
+  };
 
   return (
     <div className="category">
@@ -76,6 +118,13 @@ function Offers() {
               ))}
             </ul>
           </main>
+          
+          
+          {lastFetchedListing && (
+            <p className='loadMore' onClick={onFetchMoreListings}>
+              Load More
+            </p>
+          )}
         </>
       ) : (
         <p>There are currently no offers</p>
