@@ -28,7 +28,7 @@ function Slider() {
           data: doc.data(),
         });
       });
-      
+
       setListings(listings);
       setLoading(false);
     };
@@ -43,30 +43,36 @@ function Slider() {
     listings && (
       <>
         <p className="exploreHeading">Recommended</p>
-        <Swiper slidesPerView={1} pagination={{ clickable: true }}>
-          {listings.map(({ data, id }) => (
-            <SwiperSlide
-              key={id}
-              onClick={() => navigate(`/category/${data.type}/${id}`)}
-            >
-              <div
-                style={{
-                  background: `url(${data.imgUrls[0]}) center no-repeat`,
-                  backgroundSize: "cover",
-                }}
-                className="swiperSlideDiv"
+
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          navigation
+        >
+          {listings.map(({ data, id }) => {
+            return (
+              <SwiperSlide
+                key={id}
+                onClick={() => navigate(`/category/${data.type}/${id}`)}
               >
-                <p className="swiperSlideText">
-                  {data.name}
+                <div
+                  style={{
+                    background: `url(${data.imgUrls[0]}) center no-repeat`,
+                    backgroundSize: "cover",
+                    padding: "150px",
+                  }}
+                  className="swipeSlideDiv"
+                >
+                  <p className="swiperSlideText">{data.name}</p>
                   <p className="swiperSlidePrice">
-                    ${data.discountedPrice ?? data.regularPrice}
-                    {''}
+                    ₹{data.discountedPrice ?? data.regularPrice}{" "}
                     {data.type === "rent" && "/month"}
                   </p>
-                </p>
-              </div>
-            </SwiperSlide>
-          ))}
+                </div>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </>
     )

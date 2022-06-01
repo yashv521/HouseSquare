@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import "swiper/css";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/a11y';
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
 import Spinner from "../components/Spinner";
 import shareIcon from "../assets/svg/shareIcon.svg";
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y])
+
 
 function Listing() {
   const [listing, setListing] = useState(null);
@@ -43,35 +47,26 @@ function Listing() {
     <main>
       
       <Swiper
-        modules={[Navigation, Pagination, Scrollbar, A11y]}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        navigation
-      >
-        {listings.map(({ data, id }) => {
-          return (
-            <SwiperSlide
-              key={id}
-              onClick={() => navigate(`/category/${data.type}/${id}`)}
-            >
-              <div
-                style={{
-                  background: `url(${data.imgUrls[0]}) center no-repeat`,
-                  backgroundSize: 'cover',
-                  padding: '150px',
-                }}
-                className="swipeSlideDiv"
-              >
-                <p className="swiperSlideText">{data.name}</p>
-                <p className="swiperSlidePrice">
-                  ${data.discountedPrice ?? data.regularPrice}{' '}
-                  {data.type === 'rent' && '/month'}
-                </p>
-              </div>
+    modules={[Navigation, Pagination, Scrollbar, A11y]}
+    slidesPerView={1}
+    pagination={{ clickable: true }}
+    navigation
+    style={{ height: '300px' }}
+>
+    {listing.imgUrls.map((url, index) => {
+       return (
+            <SwiperSlide key={index}>
+                <div
+                    className='swiperSlideDiv'
+                    style={{
+                        background: `url(${listing.imgUrls[index]}) center no-repeat`,
+                        backgroundSize: 'cover',
+                    }}
+                ></div>
             </SwiperSlide>
-          )
-        })}
-      </Swiper>
+        );
+    })}
+</Swiper>
 
       <div
         className="shareIconDiv"
