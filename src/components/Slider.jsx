@@ -57,10 +57,11 @@ function Slider() {
                 onClick={() => navigate(`/category/${data.type}/${id}`)}
               >
                 <div
+
                   style={{
                     background: `url(${data.imgUrls[0]}) center no-repeat`,
                     backgroundSize: "cover",
-                    padding: "150px",
+                    padding: "250px",
                   }}
                   className="swipeSlideDiv"
                 >

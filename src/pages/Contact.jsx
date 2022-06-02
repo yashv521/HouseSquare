@@ -23,7 +23,7 @@ function Contact() {
       }
     }
 
-    getLandlord()
+    getLandlord(); 
   }, [params.landlordId])
 
   const onChange = (e) => setMessage(e.target.value)
