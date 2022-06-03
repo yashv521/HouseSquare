@@ -70,7 +70,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4rem;
 }
 
 .removeIcon {
@@ -79,6 +78,7 @@ button {
   top: -3%;
   right: -2%;
 }
+
 .editIcon {
   cursor: pointer;
   position: absolute;
@@ -265,7 +265,7 @@ button {
 }
 
 .socialLogin {
-  /* margin-top: 4rem; */
+  margin-top: 0rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -276,9 +276,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 0.75rem;
-  margin: 1.5rem; */
-  margin: 5px;
+  padding: 0.75rem;
+  margin: 2rem;
   width: 3rem;
   height: 3rem;
   background-color: #ffffff;
@@ -287,13 +286,11 @@ button {
 }
 
 .socialIconImg {
-  width: 75%;
-  margin: 0;
+  width: 100%;
 }
 
 .registerLink {
-  /* mar;gin-top: 0rem; */
-  /* margin-bottom: 300px; */
+  margin-top: 1.5rem;
   color: #00cc66;
   font-weight: 600;
   text-align: center;
@@ -393,7 +390,6 @@ button {
 
 .exploreCategoryName {
   font-weight: 500;
-  margin-bottom:5%;
   text-align: left;
 }
 
@@ -797,7 +793,7 @@ button {
 .formInputFile {
   width: 100%;
 }
-.formInputFile::file-selector-button {
+.formInputFile::-webkit-file-upload-button {
   background-color: #00cc66;
   border: none;
   color: #ffffff;

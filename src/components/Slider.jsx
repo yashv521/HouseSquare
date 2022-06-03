@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../firebase.config";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Spinner from "./Spinner";
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 function Slider() {
   const [loading, setLoading] = useState(true);
@@ -60,8 +60,8 @@ function Slider() {
 
                   style={{
                     background: `url(${data.imgUrls[0]}) center no-repeat`,
-                    backgroundSize: "cover",
-                    padding: "250px",
+                    backgroundSize: "contain no-repeat",
+                    padding: "150px",
                   }}
                   className="swipeSlideDiv"
                 >
