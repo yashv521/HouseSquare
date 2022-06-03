@@ -1,9 +1,13 @@
-import{Link} from 'react-router-dom'
+import{Link, useNavigate} from 'react-router-dom'
 import Slider from '../components/Slider'
 import rentCategoryImage from '../assets/jpg/rentCategoryImage.jpg'
 import sellCategoryImage from '../assets/jpg/sellCategoryImage.jpg'
 
+
+
 function Explore() {
+
+    const navigate = useNavigate()
     return (
         <div className='explore'>
             <header>
@@ -24,6 +28,9 @@ function Explore() {
                         <p className="exploreCategoryName">Places for sale</p>
                     </Link>
                 </div>
+                <p className='loadMore1' onClick={() => navigate("/about-me")} >
+              About me
+            </p>
             </main>
             
         </div>
