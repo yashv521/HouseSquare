@@ -14,6 +14,7 @@ function Navbar() {
   };
 
   return (
+    
     <footer className="navbar">
       <nav className="navbarNav">
         <ul className="navbarListItems">
@@ -70,6 +71,7 @@ function Navbar() {
         </ul>
       </nav>
     </footer>
+    
   );
 }
 
