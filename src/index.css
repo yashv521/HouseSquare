@@ -285,6 +285,47 @@ button {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
 }
 
+.socialIconDiv1 {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  margin: 2rem;
+  width: 5rem;
+  height: 5rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+.socialIconDiv2 {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  margin: 2rem;
+  width: 5rem;
+  height: 5rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.heart1{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1rem;
+  margin: 0rem;
+  width: 3.4rem;
+  height: 3rem;
+  
+  
+}
+
 .socialIconImg {
   width: 100%;
 }
@@ -296,6 +337,25 @@ button {
   text-align: center;
   margin-bottom: 3rem;
 }
+
+
+.registerLink1 {
+  margin-top: 3rem;
+  color: #d72bfa;
+  font-weight: 600;
+  font-size: large;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.registerLink2 {
+  margin-top: 3rem;
+  color: rgb(255, 85, 198);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0rem;
+}
+
 
 @media (min-width: 1217px) {
   .explore {
@@ -392,6 +452,39 @@ button {
   margin-bottom: 5rem;
   font-weight: 500;
   text-align: left;
+}
+
+.exploreCategoryName1 {
+
+  font-size: smaller;
+  margin: 6rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.exploreCategoryName2 {
+
+  font-size: smaller;
+  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.colorBtn {
+  padding: 0.25rem 0.5rem;
+  border: 10px;
+  background-color: gray;
+  color: white;
+  outline: none;
+  cursor: pointer;
 }
 
 .category {

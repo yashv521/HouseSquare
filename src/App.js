@@ -14,7 +14,7 @@ import CreateListing from './pages/CreateListing'
 import EditListing from './pages/EditListing'
 import Listing from './pages/Listing'
 import Contact from './pages/Contact';
-import aboutMe from './pages/aboutMe';
+import AboutMe from './pages/AboutMe';
 import { ToastContainer } from 'react-toastify'
 
 
@@ -36,7 +36,7 @@ function App() {
         <Route path='/edit-listing/:listingId' element={<EditListing />} /> 
         <Route path='/category/:categoryName/:listingId' element={<Listing/>}/>
         <Route path='/contact/:landlordId' element={<Contact />} /> 
-        <Route path='/about-me' element={< aboutMe/>} /> 
+        <Route path='/about-me' element={< AboutMe/>} /> 
       </Routes>
       <ToastContainer/>
       <Navbar />
