@@ -478,14 +478,7 @@ button {
   text-align: left;
 }
 
-.colorBtn {
-  padding: 0.25rem 0.5rem;
-  border: 10px;
-  background-color: gray;
-  color: white;
-  outline: none;
-  cursor: pointer;
-}
+
 
 .category {
   margin-bottom: 10rem;
